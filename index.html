@@ -1,142 +1,962 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SGSJ Alumni Meet 2026</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGSJ Polytechnic Alumni Association</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #f4a261;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+            --text-light: #fff;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-header {
-    background: #1a237e;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
 
-nav {
-    background: #3949ab;
-    padding: 10px;
-    text-align: center;
-}
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
-nav a {
-    color: white;
-    margin: 10px;
-    text-decoration: none;
-    font-weight: bold;
-}
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
 
-.hero {
-    background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d') no-repeat center/cover;
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-.hero h1 {
-    font-size: 40px;
-}
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.section {
-    padding: 40px;
-    text-align: center;
-}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.card {
-    background: white;
-    padding: 20px;
-    margin: 15px;
-    border-radius: 10px;
-    display: inline-block;
-    width: 250px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+        .logo span { color: var(--secondary-color); }
 
-.btn {
-    display: inline-block;
-    padding: 12px 20px;
-    margin: 10px;
-    background: #1a237e;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
 
-.footer {
-    background: #1a237e;
-    color: white;
-    text-align: center;
-    padding: 15px;
-}
-</style>
+        .nav-links a {
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover { color: var(--secondary-color); }
+
+        .btn-login {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-login:hover {
+            background-color: #e76f51;
+            color: white;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('sgsj-building.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); }
+
+        .btn-outline {
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-outline:hover { background-color: var(--text-light); color: var(--primary-color); }
+
+        /* --- STATS SECTION --- */
+        .stats {
+            background-color: white;
+            padding: 3rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        /* --- ABOUT US SECTION --- */
+        .about-section {
+            position: relative;
+            background-image: url('sgsj-building.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 6rem 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.9) 0%, rgba(0, 51, 102, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .about-section .section-title {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #f4a261;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .mv-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .mv-card h4 {
+            color: #f4a261;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mv-card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* --- WHY JOIN US SECTION --- */
+        .why-join-section {
+            padding: 5rem 0;
+            background-color: white;
+            text-align: center;
+        }
+
+        .why-join-section .section-title {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-join-tagline {
+            font-size: 1.5rem;
+            color: var(--primary-color); /* UPDATED: Changed to deep blue for better visibility */
+            font-style: italic;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .why-join-tagline::before, .why-join-tagline::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary-color);
+            opacity: 0.4;
+            position: absolute;
+            top: -20px;
+            font-weight: 300;
+        }
+
+        .why-join-tagline::before { left: -40px; }
+        .why-join-tagline::after { right: -40px; top: auto; bottom: -40px; }
+
+        .join-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .join-card {
+            background: var(--light-bg);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border-bottom: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .join-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        .join-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .join-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery-section {
+            padding: 5rem 0;
+            background-color: var(--light-bg);
+        }
+
+        .gallery-section .section-title {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .gallery-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 51, 102, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-overlay p {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .gallery-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-icon {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--secondary-color);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .lightbox-caption h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- EVENTS SECTION --- */
+        .events-section { 
+            background-color: #e9ecef; 
+            padding: 4rem 0;
+        }
+        
+        .event-card {
+            display: flex;
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .event-date {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 100px;
+        }
+
+        .event-date .day { font-size: 1.5rem; font-weight: bold; }
+        .event-date .month { text-transform: uppercase; }
+
+        .event-details { padding: 1.5rem; }
+        .event-details h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
+        .event-details p { margin-bottom: 0.3rem; }
+        .event-details .highlight { 
+            color: var(--secondary-color); 
+            font-weight: 500;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Registration Button */
+        .btn-register {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #e76f51 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            border: 2px solid transparent;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #e76f51 0%, var(--secondary-color) 100%);
+        }
+
+        .btn-register:active {
+            transform: translateY(-1px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul li { margin-bottom: 0.5rem; }
+        .footer-col ul li a:hover { text-decoration: underline; }
+        .footer-col p { color: rgba(255,255,255,0.9); }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2rem; }
+            .event-card { flex-direction: column; }
+            .event-date { flex-direction: row; gap: 10px; padding: 1rem; }
+            .about-section { background-attachment: scroll; }
+            .why-join-tagline::before { left: -20px; }
+            .why-join-tagline::after { right: -20px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .lightbox-close { right: 20px; font-size: 2.5rem; }
+            .why-join-tagline { font-size: 1.3rem; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <h1>SGSJ Alumni Meet 2026</h1>
-    <p>Reconnect • Relive • Celebrate</p>
-</header>
+    <!-- NAVIGATION -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">
+                SGSJ <span>Polytechnic</span> Alumni
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#why-join">Why Join</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-login" onclick="alert('Redirecting to Alumni Portal Login...')">Member Login</a>
+        </div>
+    </header>
 
-<nav>
-    <a href="#about">About</a>
-    <a href="#event">Event</a>
-    <a href="#register">Register</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Welcome Home, Graduates</h1>
+            <p>Connecting the global community of SGSJ Polytechnic alumni to foster networking, mentorship, and continuous growth.</p>
+            <div class="cta-buttons">
+                <a href="#why-join" class="btn-primary">Join Us</a>
+                <a href="#about" class="btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
 
-<section class="hero">
-    <h1>Welcome Back Alumni!</h1>
-    <p>Join us on 11th April 2026 at College Campus, Khurja</p>
-    <a class="btn" href="https://form.svhrt.com/6995b9cf8975b4e281658784">Register Now</a>
-</section>
+    <!-- STATS -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3>15,000+</h3>
+                <p>Registered Alumni</p>
+            </div>
+            <div class="stat-item">
+                <h3>40+</h3>
+                <p>Years of Excellence</p>
+            </div>
+            <div class="stat-item">
+                <h3>12</h3>
+                <p>Global Chapters</p>
+            </div>
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Annual Events</p>
+            </div>
+        </div>
+    </section>
 
-<section id="about" class="section">
-    <h2>About the Meet</h2>
-    <p>This alumni meet is a chance to reconnect with old friends, relive memories, and build new connections.</p>
-</section>
+    <!-- ABOUT US SECTION -->
+    <section class="about-section" id="about">
+        <div class="about-overlay"></div>
+        <div class="container about-content">
+            <h2 class="section-title">About Us</h2>
+            
+            <div class="about-text">
+                <h3>Welcome to SGSJ Polytechnic Alumni Association</h3>
+                <p>
+                    The SGSJ Polytechnic Alumni Association is a vibrant community of graduates dedicated to maintaining lifelong connections with their alma mater and fellow alumni. Since our establishment, we have been committed to fostering professional growth, networking opportunities, and giving back to the institution that shaped our careers.
+                </p>
+                <p>
+                    Our alumni span across diverse industries and geographies, creating a powerful network of professionals who continue to uphold the values of excellence, innovation, and integrity instilled by SGSJ Polytechnic.
+                </p>
+                
+                <div class="mission-vision">
+                    <div class="mv-card">
+                        <h4>🎯 Our Mission</h4>
+                        <p>To connect, engage, and empower SGSJ Polytechnic alumni while supporting current students and contributing to the growth of our beloved institution.</p>
+                    </div>
+                    <div class="mv-card">
+                        <h4>👁️ Our Vision</h4>
+                        <p>To build a global alumni network that drives innovation, mentorship, and excellence, making SGSJ Polytechnic a beacon of technical education.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="event" class="section">
-    <h2>Event Highlights</h2>
+    <!-- WHY JOIN US SECTION -->
+    <section class="why-join-section" id="why-join">
+        <div class="container">
+            <h2 class="section-title">Why Join Us?</h2>
+            <div class="why-join-tagline">
+                To connect, grow, and give back through a strong network of trusted peers.
+            </div>
 
-    <div class="card">
-        <h3>Date</h3>
-        <p>11 April 2026</p>
+            <div class="join-grid">
+                <div class="join-card">
+                    <span class="join-icon">🤝</span>
+                    <h3>Connect</h3>
+                    <p>Reconnect with old classmates and build new relationships with professionals across diverse industries within the SGSJ community.</p>
+                </div>
+                <div class="join-card">
+                    <span class="join-icon">📈</span>
+                    <h3>Grow</h3>
+                    <p>Access exclusive career opportunities, mentorship programs, and skill development workshops designed to accelerate your professional journey.</p>
+                </div>
+                <div class="join-card">
+                    <span class="join-icon">❤️</span>
+                    <h3>Give Back</h3>
+                    <p>Contribute to the next generation of students through mentorship, scholarships, and community initiatives that strengthen our alma mater.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Photo Gallery</h2>
+            <p class="gallery-subtitle">Capturing memories and moments from our vibrant alumni community</p>
+            
+            <div class="gallery-filter">
+                <button class="filter-btn active" onclick="filterGallery('all')">All Photos</button>
+                <button class="filter-btn" onclick="filterGallery('campus')">Campus</button>
+                <button class="filter-btn" onclick="filterGallery('events')">Events</button>
+                <button class="filter-btn" onclick="filterGallery('reunion')">Reunions</button>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 - SGSJ Building Front View (YOUR PHOTO) -->
+                <div class="gallery-item" data-category="campus" onclick="openLightbox(this)">
+                    <img src="sgsj-building-front.jpg" alt="SGSJ Polytechnic Main Building">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>SGSJ Polytechnic Main Building</h4>
+                        <p>Main Campus, Khurja</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item" data-category="events" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600" alt="Alumni Event">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>Annual Alumni Meet 2025</h4>
+                        <p>Networking & Celebrations</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item" data-category="reunion" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="Reunion">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>Batch Reunion 2024</h4>
+                        <p>Reconnecting with old friends</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item" data-category="campus" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600" alt="Campus Life">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>Campus Life</h4>
+                        <p>Students and Alumni together</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item" data-category="events" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=600" alt="Award Ceremony">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>Awards Ceremony</h4>
+                        <p>Honoring Excellence</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item" data-category="reunion" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600" alt="Group Photo">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>Batch of 2020</h4>
+                        <p>Reunion Gathering</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item" data-category="campus" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600" alt="Library">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>Central Library</h4>
+                        <p>Knowledge Hub</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item" data-category="events" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600" alt="Technical Seminar">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>Technical Seminar</h4>
+                        <p>Learning & Development</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="gallery-item" data-category="reunion" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600" alt="Alumni Gathering">
+                    <div class="gallery-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <h4>Alumni Gathering</h4>
+                        <p>Memories & Friendships</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Gallery Image" id="lightbox-img">
+        <div class="lightbox-caption">
+            <h4 id="lightbox-title">Title</h4>
+            <p id="lightbox-desc">Description</p>
+        </div>
     </div>
 
-    <div class="card">
-        <h3>Venue</h3>
-        <p>College Campus, Khurja</p>
-    </div>
+    <!-- UPCOMING EVENTS -->
+    <section class="events-section" id="events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">11</span>
+                    <span class="month">Apr '26</span>
+                </div>
+                <div class="event-details">
+                    <h3>Annual Alumni Reunion & Awards Ceremony</h3>
+                    <p><strong>📍 Location:</strong> SGSJ Polytechnic, Khurja</p>
+                    <p><strong>🕐 Time:</strong> 10:00 AM Onwards</p>
+                    <p class="highlight">Join us for our biggest gathering of the year. Networking, Tea/Lunch and awards ceremony included.</p>
+                    
+                    <!-- Registration Button -->
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://forms.gle/7XSKKUGnxW7fxKYK6" target="_blank" class="btn-register">
+                            📝 Register Now
+                        </a>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+                            Limited seats available. Register before April 5, 2026
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <div class="card">
-        <h3>Contribution</h3>
-        <p>₹500 per person</p>
-    </div>
+        </div>
+    </section>
 
-</section>
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SGSJ Polytechnic Alumni</h4>
+                    <p>Building a legacy of excellence and innovation since 1984.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#why-join">Why Join</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#events">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>📧 <a href="mailto:alumnisgsj@gmail.com">alumnisgsj@gmail.com</a></li>
+                        <li>📱 <a href="tel:+919354937100">+91 93549 37100</a></li>
+                        <li>🏫 SGSJ Polytechnic, Khurja<br>Bulandshahr, Uttar Pradesh, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 SGSJ Polytechnic Alumni Association. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
 
-<section id="register" class="section">
-    <h2>Register Now</h2>
-    <p>Secure your spot by filling the registration form.</p>
-    <a class="btn" href="https://form.svhrt.com/6995b9cf8975b4e281658784">Fill Registration Form</a>
-</section>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-<section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p>Email: alumnisgsj@gmail.com</p>
-    <p>WhatsApp: +91-XXXXXXXXXX</p>
-</section>
+        // Gallery Filter
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent.toLowerCase().includes(category) || (category === 'all' && btn.textContent.includes('All'))) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Filter items
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
 
-<div class="footer">
-    <p>© 2026 SGSJ Alumni Association</p>
-</div>
+        // Lightbox
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const title = element.querySelector('h4').textContent;
+            const desc = element.querySelector('p').textContent;
+            
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-desc').textContent = desc;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
